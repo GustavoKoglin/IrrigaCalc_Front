@@ -17,7 +17,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { useHash: true })], // ⚠️ Ativa Hash
+    imports: [RouterModule.forRoot(routes, { useHash: true, scrollPositionRestoration: 'enabled' })], // ⚠️ Ativa Hash
     exports: [RouterModule],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }] // ⚠️ Força Hash
   })

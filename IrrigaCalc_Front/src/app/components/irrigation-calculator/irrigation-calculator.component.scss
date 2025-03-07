@@ -1,65 +1,109 @@
 .container {
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #ffffff;
+  max-width: 1200px; // Aumento da largura máxima do container
+  margin: 60px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 2.2rem; // Aumento do tamanho do título
+    color: #007bff;
+  }
+
+  p {
+    font-size: 1.4rem; // Aumento do tamanho do texto geral
+    color: #333;
+  }
+
+  .form-label {
+    font-size: 1.3rem; // Aumento do tamanho dos rótulos dos inputs
+    font-weight: bold;
+    color: #333;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 1.2rem; // Aumento do tamanho dos inputs e selects
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  .card {
+    border-radius: 12px;
+    background: #f8f9fa;
+    padding: 25px;
+  }
+
+  .result-container {
+    background: #e9f5e9;
+    border: 1px solid #28a745;
     border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  
-    h1 {
-      color: #007bff;
-    }
-  
-    .form-label {
-      font-weight: bold;
-      color: #333;
-    }
-  
-    .form-control,
-    .form-select {
-      margin-bottom: 15px;
-    }
+    padding: 20px;
+    font-size: 1.4rem;
+  }
 
-    .container {
-      text-align: center;
-    }
-    
-    .card {
-      border-radius: 12px;
-      background: #f8f9fa;
-    }
-    
-    .result-container {
-      background: #e9f5e9;
-      border: 1px solid #28a745;
-      border-radius: 8px;
-    }
-    
-    .text-success {
-      font-weight: bold;
-      color: #28a745;
-    }
-    
-    .text-danger {
-      font-weight: bold;
-      color: #dc3545;
-    }
-    
+  .text-success {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+  }
 
-    button {
-      width: 100%;
-      background: #007bff;
-      color: white;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease-in-out;
-  
-      &:hover {
-        background: #0056b3;
-      }
+  .text-danger {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #dc3545;
+  }
+
+  button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 14px; // Aumento do padding do botão
+    border: none;
+    border-radius: 5px;
+    font-size: 1.3rem; // Aumento do tamanho do texto do botão
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+
+    &:hover {
+      background: #0056b3;
     }
   }
-  
+
+  // Responsividade para telas menores
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 20px;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    .form-label {
+      font-size: 1.2rem;
+    }
+
+    .form-control,
+    .form-select {
+      font-size: 1.1rem;
+      padding: 10px;
+    }
+
+    button {
+      font-size: 1.2rem;
+    }
+
+    .result-container {
+      font-size: 1.3rem;
+    }
+  }
+}

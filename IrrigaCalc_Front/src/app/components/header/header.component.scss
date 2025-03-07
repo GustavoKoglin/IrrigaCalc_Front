@@ -8,12 +8,14 @@ nav {
     }
   
     .navbar-nav .nav-link {
+      padding: 10px;
+      font-size: 1.2rem;
       color: white;
       font-weight: 500;
       transition: color 0.3s ease-in-out;
   
       &:hover {
-        color: #d4e6ff;
+        color: #39393a;
       }
     }
   }
