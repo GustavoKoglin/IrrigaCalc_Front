@@ -13,6 +13,13 @@
       "allowedRoles": [
         "anônimo"
       ]
+    },
+    {
+      "route": "#contato",
+      "statusCode": 200,
+      "allowedRoles": [
+        "anônimo"
+      ]
     }
   ]
 }
