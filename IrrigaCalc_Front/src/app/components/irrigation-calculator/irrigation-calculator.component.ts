@@ -14,7 +14,7 @@ export class IrrigationCalculatorComponent {
   
   resultLitros: string = '';
   resultCusto: string = '';
-  unidadeArea: string = 'm2'; // Padrão: Metros Quadrados
+  unidadeArea: string = 'selecione'; // Padrão: Metros Quadrados
   unidadeVolume: string = 'litros'; // Padrão: Litros
   area: string = ''; // Valor da área a ser digitado
 
