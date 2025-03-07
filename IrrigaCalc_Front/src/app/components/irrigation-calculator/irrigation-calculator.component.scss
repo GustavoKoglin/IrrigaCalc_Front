@@ -1,0 +1,65 @@
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  
+    h1 {
+      color: #007bff;
+    }
+  
+    .form-label {
+      font-weight: bold;
+      color: #333;
+    }
+  
+    .form-control,
+    .form-select {
+      margin-bottom: 15px;
+    }
+
+    .container {
+      text-align: center;
+    }
+    
+    .card {
+      border-radius: 12px;
+      background: #f8f9fa;
+    }
+    
+    .result-container {
+      background: #e9f5e9;
+      border: 1px solid #28a745;
+      border-radius: 8px;
+    }
+    
+    .text-success {
+      font-weight: bold;
+      color: #28a745;
+    }
+    
+    .text-danger {
+      font-weight: bold;
+      color: #dc3545;
+    }
+    
+
+    button {
+      width: 100%;
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+  
+      &:hover {
+        background: #0056b3;
+      }
+    }
+  }
+  
