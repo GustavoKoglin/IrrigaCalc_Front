@@ -14,6 +14,7 @@
           <input type="text" class="form-control" id="area" [(ngModel)]="area" name="area" placeholder="Digite a área"
             (input)="formatarArea()" >
           <select class="form-select" [(ngModel)]="unidadeArea" name="unidadeArea">
+            <option value="selecione">Selecione</option>
             <option value="m2">m²</option>
             <option value="hectares">Hectares (ha)</option>
           </select>
