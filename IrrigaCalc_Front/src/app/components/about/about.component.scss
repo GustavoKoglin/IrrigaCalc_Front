@@ -32,23 +32,10 @@
   border-left: 5px solid #0077cc;
   border-radius: 8px;
 
-  h3{
-    margin-top: 70px;
-  }
-
   p{
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
-  }
-
-  pre {
-    background-color: #e6f2ff;
-    padding: 0.75rem;
-    font-family: 'times new roman', monospace;
-    font-size: 1.2rem;
-    border-radius: 4px;
-    overflow-x: auto;
   }
 
   ul {
@@ -60,6 +47,107 @@
 
   li {
     margin-bottom: 0.25rem;
+  }
+
+  .variaveis-lista {
+    padding-left: 1.5rem;
+    list-style: disc;
+    line-height: 1.8rem;
+    font-size: 1.05rem;
+  
+    li {
+      margin-bottom: 0.5rem;
+      strong {
+        color: #1b4d89;
+      }
+    }
+  }
+  
+  .observacao-box {
+    background-color: #fffbea;
+    border-left: 5px solid #f5c400;
+    padding: 1rem 1.25rem;
+    margin-top: 1.5rem;
+    font-size: 1.6rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  
+    p {
+      margin: 0;
+      color: #3e3e3e;
+    }
+  
+    strong {
+      color: #8a6d1d;
+    }
+  }
+}
+
+.formula-container {
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 100%;
+  overflow-x: auto;
+  font-size: 1.2rem;
+
+  ng-katex {
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
+}
+
+.formula-irrigacao {
+  background: #f9fcff;
+  border: 2px solid #d3eaff;
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', sans-serif;
+
+  h2 {
+    text-align: center;
+    color: #0077b6;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .formula-box {
+    background: #fefefe;
+    border: 2px solid #dbe3ec;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: #2e3a59;
+  }
+  
+  .formula-step {
+    margin-bottom: 12px;
+    text-align: left;
+  
+    strong {
+      color: #204b8c;
+    }
+  
+    .var {
+      font-weight: 500;
+      color: #0c6980;
+    }
+  
+    .num {
+      font-weight: 600;
+      color: #b23e3e;
+    }
   }
 }
 

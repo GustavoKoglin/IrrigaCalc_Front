@@ -66,131 +66,278 @@
 
     <div class="formulas-container">
       <h3>📘 Cálculo da Necessidade Hídrica</h3>
-      <p>O cálculo é baseado na fórmula:</p>
-      <pre>
-        ETc = ETo × Kc;
-        Lâmina de irrigação = ETc / Eficiência;
-        Volume (litros) = Lâmina × Área;
-        Volume (m³) = Volume (litros) / 1000;
-        Custo = Volume (m³) × R$ 2,50;
-      </pre>
+      <div class="formula-irrigacao">
+        <h2>📐 O cálculo é baseado na fórmula:💧</h2>
+        <div class="formula-box">
+          <div class="formula-step">
+            <strong>ETc</strong> = <span class="var">ET₀</span> ×
+            <span class="var">Kc</span>
+          </div>
+          <div class="formula-step">
+            <strong>Kc</strong> = <span class="var">ETc</span> ÷
+            <span class="var">η</span>
+          </div>
+          <div class="formula-step">
+            <strong>V(L)</strong> = <span class="var">Kc</span> ×
+            <span class="var">A</span>
+          </div>
+          <div class="formula-step">
+            <strong>V(m³)</strong> = <span class="var">V</span> ÷
+            <span class="num">1.000</span>
+          </div>
+          <div class="formula-step">
+            <strong>K</strong> = <span class="var">V(m³)</span> ×
+            <span class="num">R$ 2,50</span>
+          </div>
+        </div>
+      </div>
       <p>Onde:</p>
-      <ul>
+      <ul class="variaveis-lista">
         <li>
-          <strong>ETo</strong>: Evapotranspiração de referência (fornecida pelo
-          usuário);
+          <strong>ΕΤc</strong>: Evapotranspiração da cultura (em mm/dia ou m³/m²/dia).
         </li>
         <li>
-          <strong>Kc</strong>: Coeficiente da cultura (baseado na cultura, solo
-          e estágio de desenvolvimento);
+          <strong>ΕΤ₀</strong>: Evapotranspiração de referência, fornecida pelo
+          usuário.
         </li>
         <li>
-          <strong>Eficiência</strong>: Eficiência do sistema de irrigação
-          (padrão: 85%);
+          <strong>Κc</strong>: Coeficiente da cultura — depende da cultura
+          agrícola, tipo de solo e estágio de desenvolvimento.
         </li>
-        <li><strong>Área</strong>: Tamanho da área a ser irrigada;</li>
         <li>
-          <strong>Custo</strong>: Custo da água considerando R$ 2,50/m³ como
-          valor padrão.<br/><br/>
-          <strong
-            ><p>
-              OBSERVAÇÃO: Para casos reais este valor de custo pode ser alterado
-              conforme o valor cobrado pela concessionária de água. Em caso de
-              uso de bomba d'agua que utilize poços, rios, lagos e represas,
-              será necessário fazer outro tipo e método de cálculo para saber o
-              custo monetário.
-            </p></strong
-          >
+          <strong>η</strong>: Eficiência do sistema de irrigação (valor padrão:
+          <strong>85%</strong>).
+        </li>
+        <li>
+          <strong>Α</strong>: Tamanho da área a ser irrigada (em metros
+          quadrados).
+        </li>
+        <li>
+          <strong>V(L)</strong>: Volume de água necessário (em litros).
+        </li>
+        <li>
+          <strong>V(m³)</strong>: Volume de água necessário (em metros cúbicos).
+        </li>
+        <li>
+          <strong>Κ</strong>: Valor monetário da água, utilizando
+          <strong>R$ 2,50/m³</strong> como referência.
         </li>
       </ul>
+
+      <div class="observacao-box">
+        <strong>Observação:</strong>
+        <p>
+          O valor de <strong>R$ 2,50/m³</strong> é apenas um exemplo. Para
+          aplicações reais, esse valor deve ser ajustado conforme a tarifa da
+          concessionária de água local. <br /><br />
+          Em casos de uso de fontes alternativas, como poços, rios, lagos ou
+          represas com bombeamento, é necessário realizar um cálculo adicional
+          com outras metodologias para estimar o custo energético e operacional.
+        </p>
+      </div>
     </div>
 
     <div class="referencias-irrigacao">
       <h1>🌱 Referências Científicas sobre Irrigação, ETo, ETc e Kc</h1>
-    
+
       <div class="referencias-embrapa">
         <h2>📘 Artigos Científicos da Embrapa</h2>
         <ul>
           <li>
-            <strong>Planilha para obtenção de coeficiente de cultura (Kc) para culturas de ciclo anual</strong><br>
-            <a href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1136374/1/COT-254-Planilha-obtencao-coeficiente-de-cultura.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >Planilha para obtenção de coeficiente de cultura (Kc) para
+              culturas de ciclo anual</strong
+            ><br />
+            <a
+              href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1136374/1/COT-254-Planilha-obtencao-coeficiente-de-cultura.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>A evapotranspiração e a determinação das necessidades hídricas das culturas</strong><br>
-            <a href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1173973/1/Conceicao-Wikirriga-fev-2025.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >A evapotranspiração e a determinação das necessidades hídricas
+              das culturas</strong
+            ><br />
+            <a
+              href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1173973/1/Conceicao-Wikirriga-fev-2025.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>Manejo da irrigação</strong><br>
-            <a href="https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/875096/1/Manejoirrigacao.pdf" target="_blank">Visualizar PDF</a>
+            <strong>Manejo da irrigação</strong><br />
+            <a
+              href="https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/875096/1/Manejoirrigacao.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>Evapotranspiração e coeficiente de cultivo na fase produtiva da palma de óleo</strong><br>
-            <a href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1023835/1/bolpd325.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >Evapotranspiração e coeficiente de cultivo na fase produtiva da
+              palma de óleo</strong
+            ><br />
+            <a
+              href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1023835/1/bolpd325.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>Evapotranspiração, coeficiente de cultivo e eficiência no uso de água de uvas</strong><br>
-            <a href="https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1154186/1/Evapotranspiracao-coeficiente-de-cultivo-e-eficiencia-no-uso-de-agua-de-uvas-2023.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >Evapotranspiração, coeficiente de cultivo e eficiência no uso de
+              água de uvas</strong
+            ><br />
+            <a
+              href="https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1154186/1/Evapotranspiracao-coeficiente-de-cultivo-e-eficiencia-no-uso-de-agua-de-uvas-2023.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>Irrigação por aspersão em hortaliças: qualidade da água e manejo</strong><br>
-            <a href="https://ainfo.cnptia.embrapa.br/digital/bitstream/doc/1069565/1/Irrigacao-por-aspersao-em-hortalicas-ed-04-2017-web.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >Irrigação por aspersão em hortaliças: qualidade da água e
+              manejo</strong
+            ><br />
+            <a
+              href="https://ainfo.cnptia.embrapa.br/digital/bitstream/doc/1069565/1/Irrigacao-por-aspersao-em-hortalicas-ed-04-2017-web.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>Necessidade hídrica no cultivo de feijão, trigo, milho e arroz sob irrigação no bioma Cerrado</strong><br>
-            <a href="https://www.infoteca.cnptia.embrapa.br/handle/doc/568970" target="_blank">Acessar Documento</a>
+            <strong
+              >Necessidade hídrica no cultivo de feijão, trigo, milho e arroz
+              sob irrigação no bioma Cerrado</strong
+            ><br />
+            <a
+              href="https://www.infoteca.cnptia.embrapa.br/handle/doc/568970"
+              target="_blank"
+              >Acessar Documento</a
+            >
           </li>
           <li>
-            <strong>Estratégias de manejo de irrigação: exemplos de cálculo</strong><br>
-            <a href="https://www.infoteca.cnptia.embrapa.br/bitstream/doc/865592/1/Circ136.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >Estratégias de manejo de irrigação: exemplos de cálculo</strong
+            ><br />
+            <a
+              href="https://www.infoteca.cnptia.embrapa.br/bitstream/doc/865592/1/Circ136.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>Coeficiente de cultura (Kc) para culturas forrageiras no Brasil</strong><br>
-            <a href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1174002/1/2025-cppse-com-tec-118-jcpp-coeficiente-culturas-forrageiras-brasil-aplicacao-calculo-necessidade-irrigacao.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >Coeficiente de cultura (Kc) para culturas forrageiras no
+              Brasil</strong
+            ><br />
+            <a
+              href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1174002/1/2025-cppse-com-tec-118-jcpp-coeficiente-culturas-forrageiras-brasil-aplicacao-calculo-necessidade-irrigacao.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
           <li>
-            <strong>Potencial de uso da pegada hídrica como parâmetro de avaliação da sustentabilidade na agricultura</strong><br>
-            <a href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1146565/1/6067.pdf" target="_blank">Visualizar PDF</a>
+            <strong
+              >Potencial de uso da pegada hídrica como parâmetro de avaliação da
+              sustentabilidade na agricultura</strong
+            ><br />
+            <a
+              href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1146565/1/6067.pdf"
+              target="_blank"
+              >Visualizar PDF</a
+            >
           </li>
         </ul>
       </div>
-    
+
       <div class="artigos-irrigacao">
         <h2>📗 Artigos Científicos da Nature</h2>
         <ul>
           <li>
-            <a href="https://www.nature.com/articles/s41598-024-67042-5" target="_blank">Estimation of irrigated crop artificial irrigation evapotranspiration in China</a>
+            <a
+              href="https://www.nature.com/articles/s41598-024-67042-5"
+              target="_blank"
+              >Estimation of irrigated crop artificial irrigation
+              evapotranspiration in China</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-025-92481-z" target="_blank">Estimation of actual evapotranspiration and water requirements of wheat, barley, and maize</a>
+            <a
+              href="https://www.nature.com/articles/s41598-025-92481-z"
+              target="_blank"
+              >Estimation of actual evapotranspiration and water requirements of
+              wheat, barley, and maize</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-024-52972-x" target="_blank">Effects of irrigation scheduling on the yield and irrigation water use efficiency of maize</a>
+            <a
+              href="https://www.nature.com/articles/s41598-024-52972-x"
+              target="_blank"
+              >Effects of irrigation scheduling on the yield and irrigation
+              water use efficiency of maize</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-024-57215-7" target="_blank">Water strategy improves the inflorescence primordia formation of grapevines</a>
+            <a
+              href="https://www.nature.com/articles/s41598-024-57215-7"
+              target="_blank"
+              >Water strategy improves the inflorescence primordia formation of
+              grapevines</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-023-41488-5" target="_blank">Stimulating growth, root quality, and yield of carrots under different irrigation regimes</a>
+            <a
+              href="https://www.nature.com/articles/s41598-023-41488-5"
+              target="_blank"
+              >Stimulating growth, root quality, and yield of carrots under
+              different irrigation regimes</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-024-72299-x" target="_blank">Estimation of the crop evapotranspiration for Udham Singh Nagar using remote sensing</a>
+            <a
+              href="https://www.nature.com/articles/s41598-024-72299-x"
+              target="_blank"
+              >Estimation of the crop evapotranspiration for Udham Singh Nagar
+              using remote sensing</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-025-94113-y" target="_blank">Influence of deficit irrigation and biochar amendment on growth of cucumber</a>
+            <a
+              href="https://www.nature.com/articles/s41598-025-94113-y"
+              target="_blank"
+              >Influence of deficit irrigation and biochar amendment on growth
+              of cucumber</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-024-56898-2" target="_blank">Impacts of cobalt and zinc on improving peanuts nutrient uptake and water use efficiency</a>
+            <a
+              href="https://www.nature.com/articles/s41598-024-56898-2"
+              target="_blank"
+              >Impacts of cobalt and zinc on improving peanuts nutrient uptake
+              and water use efficiency</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-024-56573-6" target="_blank">Monitoring plant responses in field-grown peanuts exposed to water stress</a>
+            <a
+              href="https://www.nature.com/articles/s41598-024-56573-6"
+              target="_blank"
+              >Monitoring plant responses in field-grown peanuts exposed to
+              water stress</a
+            >
           </li>
           <li>
-            <a href="https://www.nature.com/articles/s41598-022-16271-7" target="_blank">Influence of water stress on engineering characteristics and oil content of sunflower</a>
+            <a
+              href="https://www.nature.com/articles/s41598-022-16271-7"
+              target="_blank"
+              >Influence of water stress on engineering characteristics and oil
+              content of sunflower</a
+            >
           </li>
         </ul>
       </div>
     </div>
-    
 
     <p>
       <span class="secao-titulo">📍 Parcerias e Expansão</span><br />
