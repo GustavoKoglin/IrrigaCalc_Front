@@ -1,9 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
     <a class="navbar-brand" [routerLink]="'/'">IrrigaCalc</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="isMenuOpen = !isMenuOpen"
+      [class.open]="isMenuOpen"
+    >
+      <span class="toggler-icon top-bar"></span>
+      <span class="toggler-icon middle-bar"></span>
+      <span class="toggler-icon bottom-bar"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
@@ -17,7 +28,9 @@
           <a class="nav-link" [href]="'#contato'">Contato</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [href]="'#calcular-custo-irrigacao'">Calculadora</a>
+          <a class="nav-link" [href]="'#calcular-custo-irrigacao'"
+            >Calculadora</a
+          >
         </li>
       </ul>
     </div>

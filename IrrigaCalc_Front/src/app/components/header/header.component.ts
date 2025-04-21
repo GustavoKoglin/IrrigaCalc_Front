@@ -10,4 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
 
+  isMenuOpen = false;
+
+
 }
