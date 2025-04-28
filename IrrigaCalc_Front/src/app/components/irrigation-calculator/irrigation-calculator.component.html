@@ -81,8 +81,17 @@
           <option *ngFor="let item of culturasDisponiveis" [value]="item">
             {{ item }}
           </option>
+        </select>        
+      </div>
+
+      <div class="mb-3">
+        <label for="tipoConsumo" class="form-label fw-bold">Tipo de Consumo (Águas de Sinop)</label>
+        <select id="tipoConsumo" class="form-select" [(ngModel)]="tipoConsumoSinop" name="tipoConsumo">
+          <option value="residencial">Residencial</option>
+          <option value="comercial">Comercial</option>
+          <option value="publica">Pública</option>
+          <option value="industrial">Industrial</option>
         </select>
-        
       </div>
 
       <button
