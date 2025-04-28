@@ -1,8 +1,10 @@
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9656900277000115"
-    crossorigin="anonymous">
-  </script>
-  <meta name="google-adsense-account" content="ca-pub-9656900277000115">
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9656900277000115"
+    crossorigin="anonymous"
+  ></script>
+  <meta name="google-adsense-account" content="ca-pub-9656900277000115" />
 </head>
 
 <div class="container mt-5" id="calcular-custo-irrigacao">
@@ -54,36 +56,39 @@
       </div>
 
       <div class="mb-3">
-        <label for="cultura" class="form-label fw-bold">Cultura</label>
-        <select id="cultura" class="form-select" #cultura>
-          <option value="selecionar">Selecionar</option>
-          <option value="milho">Milho</option>
-          <option value="soja">Soja</option>
-          <option value="feijão">Feijão</option>
-          <option value="arroz">Arroz</option>
-          <option value="trigo">Trigo</option>
-          <option value="café">Café</option>
-          <option value="cevada">Cevada</option>
-          <option value="algodão">Algodão</option>
-          <option value="cana">Cana-de-açúcar</option>
-          <option value="sorgo">Sorgo</option>
-          <option value="girassol">Girassol</option>
-          <option value="hortaliças">Hortaliças</option>
+        <label for="categoria" class="form-label fw-bold">Categoria</label>
+        <select
+          id="categoria"
+          class="form-select"
+          [(ngModel)]="categoriaSelecionada"
+          name="categoria"
+          (change)="atualizarCulturas()"
+        >
+          <option value="">Selecione</option>
+          <option value="frutas">Frutas</option>
+          <option value="hortalicas">Hortaliças</option>
+          <option value="graos">Grãos</option>
+          <option value="legumes">Legumes</option>
+          <option value="verduras">Verduras</option>
+          <option value="outros">Outros</option>
         </select>
+      </div>
+
+      <div class="mb-3" *ngIf="culturasDisponiveis.length > 0">
+        <label for="cultura" class="form-label fw-bold">Cultura</label>
+        <select id="cultura" class="form-select" [(ngModel)]="culturaSelecionada" name="cultura">
+          <option value="">Selecionar</option>
+          <option *ngFor="let item of culturasDisponiveis" [value]="item">
+            {{ item }}
+          </option>
+        </select>
+        
       </div>
 
       <button
         type="button"
         class="btn btn-primary w-100"
-        (click)="
-          calcularNecessidadeHidrica(
-            parseNumber(area),
-            tipoSolo.value,
-            cultura.value,
-            'desenvolvimento',
-            5
-          )
-        "
+        (click)="calcularNecessidadeHidrica()"
       >
         Calcular
       </button>

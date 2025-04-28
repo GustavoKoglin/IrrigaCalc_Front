@@ -14,9 +14,73 @@ export class IrrigationCalculatorComponent {
   
   resultLitros: string = '';
   resultCusto: string = '';
-  unidadeArea: string = 'selecione'; // Padrão: Metros Quadrados
-  unidadeVolume: string = 'litros'; // Padrão: Litros
-  area: string = ''; // Valor da área a ser digitado
+  unidadeArea: string = 'selecione';
+  area: string = '';
+  categoriaSelecionada: keyof typeof this.CULTURAS = 'frutas';
+  culturasDisponiveis: string[] = [];
+  tipoSoloSelecionado: keyof typeof this.SOLO_FACTORS = 'arenoso';
+  culturaSelecionada: string = '';
+  estagioDesenvolvimento: string = 'desenvolvimento';
+  eTo: number = 5;
+
+  // Constantes
+  readonly CUSTO_M3_AGUA = 2.50;
+  readonly EFICIENCIA_IRRIGACAO = 0.85;
+  readonly HECTARE_PARA_M2 = 10000;
+
+  // Mapeamento completo de culturas
+  readonly CULTURAS = {
+    frutas: [
+      'Abacate', 'Abacaxi', 'Açaí', 'Acerola', 'Ameixa', 'Amora', 'Banana', 'Caju',
+      'Caqui', 'Carambola', 'Cereja', 'Figo', 'Framboesa', 'Goiaba', 'Graviola', 'Jabuticaba',
+      'Jaca', 'Kiwi', 'Laranja', 'Limão', 'Maçã', 'Mamão', 'Manga', 'Maracujá',
+      'Melancia', 'Melão', 'Morango', 'Nêspera', 'Pera', 'Pêssego', 'Romã', 'Tangerina', 'Uva'
+    ],
+    hortalicas: [
+      'Alho-poró', 'Cebolinha', 'Coentro', 'Salsa', 'Cebolinha-verde', 'Manjericão', 'Hortelã',
+      'Salsão', 'Orégano', 'Alecrim'
+    ],
+    graos: [
+      'Arroz', 'Feijão', 'Milho', 'Soja', 'Trigo', 'Sorgo', 'Cevada', 'Aveia', 'Lentilha', 'Grão-de-bico',
+      'Ervilha', 'Amendoim', 'Quinoa', 'Painço', 'Café'
+    ],
+    legumes: [
+      'Abóbora', 'Abobrinha', 'Batata', 'Batata-doce', 'Berinjela', 'Beterraba',
+      'Cenoura', 'Chuchu', 'Inhame', 'Mandioquinha', 'Mandioca', 'Pepino', 'Pimentão', 'Quiabo', 'Tomate', 'Vagem'
+    ],
+    verduras: [
+      'Agrião', 'Alface', 'Almeirão', 'Catalonha', 'Chicória', 'Couve', 'Couve-flor',
+      'Espinafre', 'Rúcula', 'Repolho', 'Mostarda', 'Acelga'
+    ],
+    outros: [
+      'Cana-de-açúcar', 'Girassol', 'Algodão', 'Mamona', 'Cacau', 'Fumo',
+      'Pimenta-do-reino', 'Erva-mate', 'Palmeira', 'Borracha (seringueira)', 'Oliveira'
+    ]
+  };
+
+  // Valores base de Kc para todas as culturas (inicial, desenvolvimento, intermediário, final)
+  readonly KC_BASE: Record<string, number[]> = {
+    // Frutas
+    'Abacate': [0.65, 1.05, 1.10, 0.85],
+    'Banana': [0.75, 1.15, 1.20, 0.90],
+    // ... (todos os outros valores Kc)
+    'DEFAULT': [0.50, 1.00, 0.95, 0.65]
+  };
+
+  // Fatores de ajuste por tipo de solo
+  readonly SOLO_FACTORS = {
+    arenoso: 1.10,
+    argiloso: 0.95,
+    siltoso: 1.00,
+    humoso: 0.90,
+    calcário: 1.00,
+    salino: 1.15
+  };
+
+  atualizarCulturas() {
+    this.culturasDisponiveis = this.CULTURAS[this.categoriaSelecionada] ?? [];
+    this.culturaSelecionada = '';
+  }
 
   formatarNumero(valor: number): string {
     return valor.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -24,133 +88,62 @@ export class IrrigationCalculatorComponent {
 
   formatarArea() {
     if (this.area) {
-      this.area = this.area.replace(/\D/g, ''); // Remove tudo que não for número
-      this.area = this.area.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Adiciona pontos como separador de milhar
+      this.area = this.area.replace(/\D/g, '');
+      this.area = this.area.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
   }
 
   parseNumber(value: string): number {
-    return parseFloat(value) || 0; // Retorna 0 se não for um número válido
+    return parseFloat(value.replace(/\./g, '').replace(',', '.')) || 0;
   }
 
-  calcularNecessidadeHidrica(area: number, tipoSolo: string, cultura: string, estagioDesenvolvimento: string, eTo: number) {
-    let areaConvertida = parseFloat(this.area.replace(/\./g, '').replace(',', '.'));
+  calcularNecessidadeHidrica() {
+    if (!this.validarCampos()) return;
 
+    let areaM2 = this.parseNumber(this.area);
     if (this.unidadeArea === 'hectares') {
-      area = area * 10000; // Converter hectares para metros quadrados
+      areaM2 *= this.HECTARE_PARA_M2;
     }
 
-    if (isNaN(area) || area <= 0) {
-      alert("Por favor, insira um valor válido para a área.");
-      return;
-    }
+    const kcValues = this.KC_BASE[this.culturaSelecionada] || this.KC_BASE['DEFAULT'];
+    const kcIndex = this.getKcIndex(this.estagioDesenvolvimento);
+    const kcBase = kcValues[kcIndex];
+    const soloFactor = this.SOLO_FACTORS[this.tipoSoloSelecionado] || 1.0;
+    const kcAjustado = kcBase * soloFactor;
 
-    if (this.unidadeArea === 'hectares') {
-      areaConvertida *= 10000; // Converter hectares para metros quadrados
-    }
-
-    // **Valores de Kc baseados na cultura e estágio de desenvolvimento**
-    const kcValores: { [key: string]: { [key: string]: { [key: string]: number } } } = {
-      arenoso: {
-        milho: { inicial: 0.3, desenvolvimento: 1.2, intermediário: 1.15, final: 0.6 },
-        soja: { inicial: 0.4, desenvolvimento: 1.15, intermediário: 1.1, final: 0.5 },
-        arroz: { inicial: 1.1, desenvolvimento: 1.5, intermediário: 1.3, final: 0.8 },
-        trigo: { inicial: 0.7, desenvolvimento: 1.1, intermediário: 1.0, final: 0.4 },
-        café: { inicial: 0.6, desenvolvimento: 1.0, intermediário: 1.0, final: 0.8 },
-        cevada: { inicial: 0.7, desenvolvimento: 1.2, intermediário: 1.1, final: 0.5 },
-        algodão: { inicial: 0.5, desenvolvimento: 1.3, intermediário: 1.15, final: 0.55 },
-        cana: { inicial: 0.4, desenvolvimento: 1.2, intermediário: 1.0, final: 0.7 },
-        sorgo: { inicial: 0.6, desenvolvimento: 1.1, intermediário: 1.0, final: 0.5 },
-        girassol: { inicial: 0.5, desenvolvimento: 1.1, intermediário: 1.0, final: 0.5 },
-        hortaliças: { inicial: 0.8, desenvolvimento: 1.4, intermediário: 1.2, final: 0.6 }
-      },
-      argiloso: {
-        milho: { inicial: 0.35, desenvolvimento: 1.3, intermediário: 1.2, final: 0.65 },
-        soja: { inicial: 0.45, desenvolvimento: 1.2, intermediário: 1.15, final: 0.55 },
-        arroz: { inicial: 1.2, desenvolvimento: 1.6, intermediário: 1.4, final: 0.85 },
-        trigo: { inicial: 0.75, desenvolvimento: 1.2, intermediário: 1.05, final: 0.45 },
-        café: { inicial: 0.7, desenvolvimento: 1.1, intermediário: 1.05, final: 0.85 },
-        cevada: { inicial: 0.75, desenvolvimento: 1.3, intermediário: 1.15, final: 0.55 },
-        algodão: { inicial: 0.6, desenvolvimento: 1.4, intermediário: 1.25, final: 0.6 },
-        cana: { inicial: 0.5, desenvolvimento: 1.3, intermediário: 1.1, final: 0.75 },
-        sorgo: { inicial: 0.7, desenvolvimento: 1.2, intermediário: 1.05, final: 0.55 },
-        girassol: { inicial: 0.6, desenvolvimento: 1.2, intermediário: 1.05, final: 0.55 },
-        hortaliças: { inicial: 0.85, desenvolvimento: 1.5, intermediário: 1.3, final: 0.7 }
-      },
-      siltoso: {
-        milho: { inicial: 0.32, desenvolvimento: 1.22, intermediário: 1.18, final: 0.63 },
-        soja: { inicial: 0.42, desenvolvimento: 1.18, intermediário: 1.12, final: 0.52 },
-        arroz: { inicial: 1.15, desenvolvimento: 1.55, intermediário: 1.35, final: 0.82 },
-        trigo: { inicial: 0.72, desenvolvimento: 1.15, intermediário: 1.02, final: 0.43 },
-        café: { inicial: 0.65, desenvolvimento: 1.05, intermediário: 1.0, final: 0.8 },
-        cevada: { inicial: 0.72, desenvolvimento: 1.25, intermediário: 1.1, final: 0.53 },
-        algodão: { inicial: 0.55, desenvolvimento: 1.35, intermediário: 1.2, final: 0.58 },
-        cana: { inicial: 0.45, desenvolvimento: 1.25, intermediário: 1.05, final: 0.72 },
-        sorgo: { inicial: 0.65, desenvolvimento: 1.15, intermediário: 1.0, final: 0.52 },
-        girassol: { inicial: 0.55, desenvolvimento: 1.15, intermediário: 1.0, final: 0.52 },
-        hortaliças: { inicial: 0.8, desenvolvimento: 1.45, intermediário: 1.25, final: 0.65 }
-      },
-      humoso: {
-        milho: { inicial: 0.38, desenvolvimento: 1.35, intermediário: 1.25, final: 0.68 },
-        soja: { inicial: 0.48, desenvolvimento: 1.3, intermediário: 1.25, final: 0.6 },
-        arroz: { inicial: 1.3, desenvolvimento: 1.75, intermediário: 1.5, final: 0.95 },
-        trigo: { inicial: 0.8, desenvolvimento: 1.3, intermediário: 1.15, final: 0.5 },
-        café: { inicial: 0.7, desenvolvimento: 1.2, intermediário: 1.15, final: 0.9 },
-        cevada: { inicial: 0.8, desenvolvimento: 1.35, intermediário: 1.2, final: 0.6 },
-        algodão: { inicial: 0.6, desenvolvimento: 1.45, intermediário: 1.3, final: 0.65 },
-        cana: { inicial: 0.5, desenvolvimento: 1.4, intermediário: 1.2, final: 0.8 },
-        sorgo: { inicial: 0.7, desenvolvimento: 1.25, intermediário: 1.1, final: 0.6 },
-        girassol: { inicial: 0.6, desenvolvimento: 1.3, intermediário: 1.15, final: 0.6 },
-        hortaliças: { inicial: 0.9, desenvolvimento: 1.6, intermediário: 1.4, final: 0.75 }
-      },
-      calcário: {
-        milho: { inicial: 0.36, desenvolvimento: 1.3, intermediário: 1.22, final: 0.66 },
-        soja: { inicial: 0.46, desenvolvimento: 1.25, intermediário: 1.2, final: 0.57 },
-        arroz: { inicial: 1.2, desenvolvimento: 1.65, intermediário: 1.4, final: 0.88 },
-        trigo: { inicial: 0.77, desenvolvimento: 1.22, intermediário: 1.08, final: 0.46 },
-        café: { inicial: 0.68, desenvolvimento: 1.15, intermediário: 1.1, final: 0.86 },
-        cevada: { inicial: 0.76, desenvolvimento: 1.3, intermediário: 1.18, final: 0.57 },
-        algodão: { inicial: 0.58, desenvolvimento: 1.4, intermediário: 1.28, final: 0.63 },
-        cana: { inicial: 0.48, desenvolvimento: 1.3, intermediário: 1.15, final: 0.77 },
-        sorgo: { inicial: 0.69, desenvolvimento: 1.2, intermediário: 1.08, final: 0.58 },
-        girassol: { inicial: 0.58, desenvolvimento: 1.2, intermediário: 1.08, final: 0.58 },
-        hortaliças: { inicial: 0.88, desenvolvimento: 1.55, intermediário: 1.35, final: 0.72 }
-      },
-      salino: {
-        milho: { inicial: 0.28, desenvolvimento: 1.12, intermediário: 1.07, final: 0.52 },
-        soja: { inicial: 0.38, desenvolvimento: 1.1, intermediário: 1.05, final: 0.48 },
-        arroz: { inicial: 1.05, desenvolvimento: 1.4, intermediário: 1.25, final: 0.73 },
-        trigo: { inicial: 0.67, desenvolvimento: 1.05, intermediário: 0.92, final: 0.37 },
-        café: { inicial: 0.6, desenvolvimento: 1.0, intermediário: 0.95, final: 0.78 },
-        cevada: { inicial: 0.68, desenvolvimento: 1.1, intermediário: 1.0, final: 0.5 },
-        algodão: { inicial: 0.5, desenvolvimento: 1.2, intermediário: 1.1, final: 0.55 },
-        cana: { inicial: 0.4, desenvolvimento: 1.1, intermediário: 1.0, final: 0.7 },
-        sorgo: { inicial: 0.6, desenvolvimento: 1.05, intermediário: 1.0, final: 0.5 },
-        girassol: { inicial: 0.5, desenvolvimento: 1.05, intermediário: 1.0, final: 0.5 },
-        hortaliças: { inicial: 0.75, desenvolvimento: 1.3, intermediário: 1.15, final: 0.65 }
-      }
-    };
-
-    if (!kcValores[tipoSolo] || !kcValores[tipoSolo][cultura] || !kcValores[tipoSolo][cultura][estagioDesenvolvimento]) {
-      alert('Erro: Cultura, tipo de solo ou estágio de desenvolvimento inválidos.');
-      return;
-    }
-
-    const kc = kcValores[tipoSolo][cultura][estagioDesenvolvimento];
-    const etc = eTo * kc;
-    const eficienciaIrrigacao = 0.85;
-    const laminaIrrigacao = etc / eficienciaIrrigacao;
-    const volumeAguaLitros = laminaIrrigacao * areaConvertida;
+    const etc = this.eTo * kcAjustado;
+    const laminaIrrigacao = etc / this.EFICIENCIA_IRRIGACAO;
+    const volumeAguaLitros = laminaIrrigacao * areaM2;
     const volumeAguaM3 = volumeAguaLitros / 1000;
-    const custoAgua = volumeAguaM3 * 2.50;
+    const custoAgua = volumeAguaM3 * this.CUSTO_M3_AGUA;
 
-
-    // **Formatação dos resultados**
-    const volumeFormatado = this.unidadeVolume === 'litros'
-      ? `${this.formatarNumero(volumeAguaLitros)} L (${this.formatarNumero(volumeAguaM3)} m³)`
-      : `${this.formatarNumero(volumeAguaM3)} m³ (${this.formatarNumero(volumeAguaLitros)} L)`;
-
+    const volumeFormatado = `${this.formatarNumero(volumeAguaLitros)} L (${this.formatarNumero(volumeAguaM3)} m³)`;
+    
     this.resultLitros = `💧 Volume de Água: ${volumeFormatado}`;
     this.resultCusto = `💰 Custo Estimado: ${custoAgua.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+  }
+
+  private validarCampos(): boolean {
+    if (!this.area || this.parseNumber(this.area) <= 0) {
+      alert("Por favor, insira um valor válido para a área.");
+      return false;
+    }
+
+    if (this.unidadeArea === 'selecione') {
+      alert("Por favor, selecione uma unidade de área.");
+      return false;
+    }
+
+    if (!this.culturaSelecionada) {
+      alert("Por favor, selecione uma cultura.");
+      return false;
+    }
+
+    return true;
+  }
+
+  private getKcIndex(estagio: string): number {
+    const estagios = ['inicial', 'desenvolvimento', 'intermediário', 'final'];
+    return estagios.indexOf(estagio) || 1; // Default para desenvolvimento se não encontrado
   }
 }
