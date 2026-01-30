@@ -19,7 +19,7 @@
       <div class="col-md-12">
         <label for="area" class="form-label mb-2">{{ 'CALC.AREA_LABEL' | translate }}</label>
         <div class="input-group custom-input-group">
-          <span class="input-group-text"><i class="bi bi-textarea-resize"></i>📏</span>
+          <span class="input-group-text"><span role="img" aria-label="Ruler">📏</span></span>
           <input
             type="text"
             class="form-control"
@@ -46,7 +46,7 @@
       <div class="col-md-6">
         <label for="tipoSolo" class="form-label mb-2">{{ 'CALC.SOIL_TYPE' | translate }}</label>
         <div class="input-group custom-input-group">
-          <span class="input-group-text">🌱</span>
+          <span class="input-group-text"><span role="img" aria-label="Seedling">🌱</span></span>
           <select id="tipoSolo" class="form-select" #tipoSolo>
             <option value="selecionar">{{ 'CALC.SOIL_SELECT' | translate }}</option>
             <option value="arenoso">{{ 'CALC.SOIL_SANDY' | translate }}</option>
@@ -64,7 +64,7 @@
       <div class="col-md-6">
         <label for="categoria" class="form-label mb-2">{{ 'CALC.CATEGORY' | translate }}</label>
         <div class="input-group custom-input-group">
-          <span class="input-group-text">📦</span>
+          <span class="input-group-text"><span role="img" aria-label="Package">📦</span></span>
           <select
             id="categoria"
             class="form-select"
@@ -87,7 +87,7 @@
       <div class="col-md-12" *ngIf="culturasDisponiveis.length > 0">
         <label for="cultura" class="form-label mb-2">{{ 'CALC.CROP' | translate }}</label>
         <div class="input-group custom-input-group">
-          <span class="input-group-text">🌽</span>
+          <span class="input-group-text"><span role="img" aria-label="Corn">🌽</span></span>
           <select id="cultura" class="form-select" [(ngModel)]="culturaSelecionada" name="cultura">
             <option value="">{{ 'CALC.CROP_SELECT' | translate }}</option>
             <option *ngFor="let item of culturasDisponiveis" [value]="item">
@@ -101,7 +101,7 @@
       <div class="col-md-12">
         <label for="tipoConsumo" class="form-label mb-2">{{ 'CALC.CONSUMPTION_TYPE' | translate }}</label>
         <div class="input-group custom-input-group">
-          <span class="input-group-text">💧</span>
+          <span class="input-group-text"><span role="img" aria-label="Water Drop">💧</span></span>
           <select id="tipoConsumo" class="form-select" [(ngModel)]="tipoConsumoSinop" name="tipoConsumo">
             <option value="residencial">{{ 'CALC.CONS_RESIDENTIAL' | translate }}</option>
             <option value="comercial">{{ 'CALC.CONS_COMMERCIAL' | translate }}</option>

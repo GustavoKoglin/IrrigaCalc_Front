@@ -1,4 +1,9 @@
 {
+  "SEO": {
+    "TITLE": "IrrigaCalc - Calculadora de Consumo Hídrico para Cultivos",
+    "DESCRIPTION": "Calcule con precisión las necesidades hídricas de su cultivo. Optimice los costes, reduzca el desperdicio de agua y mejore la productividad con resultados científicos.",
+    "KEYWORDS": "riego, calculadora hídrica, agricultura, consumo de agua, agronegocio, sostenibilidad, gestión del riego"
+  },
   "HOME": {
     "WELCOME": "Bienvenido a IrrigaCalc",
     "SUBTITLE": "Descubra la cantidad ideal de agua para su campo, plantación o cultivo."

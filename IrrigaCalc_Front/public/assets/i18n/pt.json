@@ -1,4 +1,9 @@
 {
+  "SEO": {
+    "TITLE": "IrrigaCalc - Calculadora de Consumo Hídrico para Lavouras",
+    "DESCRIPTION": "Calcule com precisão a necessidade hídrica da sua lavoura. Otimize custos, reduza desperdício de água e melhore a produtividade com dados baseados na Embrapa.",
+    "KEYWORDS": "irrigação, calculadora hídrica, agricultura, consumo de água, agronegócio, embrapa, sustentabilidade, manejo de irrigação"
+  },
   "HOME": {
     "WELCOME": "Bem-vindo à IrrigaCalc",
     "SUBTITLE": "Descubra a quantidade ideal de água para sua lavoura, plantação ou cultivo."

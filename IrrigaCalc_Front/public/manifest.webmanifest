@@ -1,0 +1,17 @@
+{
+  "name": "IrrigaCalc - Calculadora Hídrica",
+  "short_name": "IrrigaCalc",
+  "description": "Calculadora de consumo hídrico para lavouras.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d6efd",
+  "icons": [
+    {
+      "src": "IrrigaCalc.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

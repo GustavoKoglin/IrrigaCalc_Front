@@ -1,4 +1,9 @@
 {
+  "SEO": {
+    "TITLE": "IrrigaCalc - Water Consumption Calculator for Crops",
+    "DESCRIPTION": "Accurately calculate your crop's water needs. Optimize costs, reduce water waste, and improve productivity using Embrapa-based scientific data.",
+    "KEYWORDS": "irrigation, water calculator, agriculture, water consumption, agribusiness, sustainability, irrigation management"
+  },
   "HOME": {
     "WELCOME": "Welcome to IrrigaCalc",
     "SUBTITLE": "Discover the ideal amount of water for your crop, plantation or cultivation."
