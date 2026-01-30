@@ -15,4 +15,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'IrrigaCalc';
 
+  constructor(private translate: TranslateService) {
+    this.translate.addLangs(['en', 'pt', 'es']);
+    this.translate.setDefaultLang('pt');
+
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang?.match(/en|pt|es/) ? browserLang : 'pt');
+  }
 }

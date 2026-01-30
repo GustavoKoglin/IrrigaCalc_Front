@@ -2,15 +2,18 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-irrigation-calculator',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, TranslateModule],
   templateUrl: './irrigation-calculator.component.html',
   styleUrls: ['./irrigation-calculator.component.scss']
 })
 export class IrrigationCalculatorComponent {
+
+  constructor(private translate: TranslateService) { }
 
   resultLitros: string = '';
   resultCusto: string = '';
@@ -214,7 +217,8 @@ export class IrrigationCalculatorComponent {
   }
 
   formatarNumero(valor: number): string {
-    return valor.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const locale = this.translate.currentLang === 'pt' ? 'pt-BR' : (this.translate.currentLang === 'es' ? 'es-ES' : 'en-US');
+    return valor.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
   formatarArea() {
@@ -252,8 +256,10 @@ export class IrrigationCalculatorComponent {
 
     const volumeFormatado = `${this.formatarNumero(volumeAguaLitros)} L (${this.formatarNumero(volumeAguaM3)} m³)`;
 
-    this.resultLitros = `💧 Volume de Água: ${volumeFormatado}`;
-    this.resultCusto = `💰 Custo Estimado: ${custoAgua.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+    this.translate.get(['CALC.RESULT_WATER', 'CALC.RESULT_COST']).subscribe(res => {
+      this.resultLitros = `${res['CALC.RESULT_WATER']}: ${volumeFormatado}`;
+      this.resultCusto = `${res['CALC.RESULT_COST']}: ${custoAgua.toLocaleString(this.translate.currentLang === 'pt' ? 'pt-BR' : (this.translate.currentLang === 'es' ? 'es-ES' : 'en-US'), { style: 'currency', currency: 'BRL' })}`;
+    });
   }
 
   private calcularCustoSinop(volumeM3: number): number {
@@ -279,22 +285,22 @@ export class IrrigationCalculatorComponent {
 
   private validarCampos(): boolean {
     if (!this.area || this.parseNumber(this.area) <= 0) {
-      alert("Por favor, insira um valor válido para a área.");
+      this.translate.get('CALC.ERROR_AREA').subscribe(msg => alert(msg));
       return false;
     }
 
     if (this.unidadeArea === 'selecione') {
-      alert("Por favor, selecione uma unidade de área.");
+      this.translate.get('CALC.ERROR_UNIT').subscribe(msg => alert(msg));
       return false;
     }
 
     if (!this.culturaSelecionada) {
-      alert("Por favor, selecione uma cultura.");
+      this.translate.get('CALC.ERROR_CROP').subscribe(msg => alert(msg));
       return false;
     }
 
     if (!this.tipoConsumoSinop) {
-      alert("Por favor, selecione um tipo de consumo.");
+      this.translate.get('CALC.ERROR_CONS').subscribe(msg => alert(msg));
       return false;
     }
 

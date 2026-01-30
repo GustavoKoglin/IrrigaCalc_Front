@@ -11,10 +11,36 @@ nav {
     font-weight: bold;
     color: #fff;
     font-size: 1.5rem;
-    transition: color 0.3s;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+
+    .logo-wrapper {
+      background: #ffffff;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      margin-right: 14px;
+      overflow: hidden;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+    }
 
     &:hover {
-      color: $secondary-color;
+      opacity: 0.9;
+      color: #fff;
+      
+      .logo-wrapper {
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -56,10 +82,15 @@ nav {
     border: none;
     background: transparent;
     padding: 10px;
-    display: flex;
+    display: none; // Default hidden
     flex-direction: column;
     justify-content: center;
     gap: 5px;
+    
+    // Explicitly show on small screens
+    @media (max-width: 991.98px) {
+      display: flex;
+    }
   
     .toggler-icon {
       width: 25px;

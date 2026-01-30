@@ -7,67 +7,56 @@
   <meta name="google-adsense-account" content="ca-pub-9656900277000115" />
 </head>
 <div class="container mt-5" id="sobre">
-  <h1 class="text-center text-primary fw-bold">Sobre o Projeto</h1>
+  <h1 class="text-center text-primary fw-bold">{{ 'ABOUT.TITLE' | translate }}</h1>
 
   <div class="projeto-descricao">
     <p>
-      📌 <strong>Resumo do Projeto – IrrigaCalc:</strong> Calculadora de Consumo
-      Hídrico para Lavouras 🌱💧
+      📌 <strong>{{ 'ABOUT.SUMMARY_TITLE' | translate }}:</strong> {{ 'ABOUT.SUMMARY_CONTENT' | translate }} 🌱💧
     </p>
     <p>
-      <span class="secao-titulo">📍 Introdução</span><br />
-      O IrrigaCalc é uma solução simples desenvolvida por
-      <strong>Gustavo Koglin</strong> para seu Projeto de Extensão no 4º
-      Semestre do curso de
-      <strong>Engenharia de Software da faculdade Anhanguera</strong>. O
-      objetivo é ajudar produtores rurais e empresas agrícolas a calcular com
-      precisão o consumo hídrico das lavouras. O projeto utiliza dados
-      científicos baseados na
-      <strong
-        >Evapotranspiração da Cultura (ETc) e nos Coeficientes de Cultura (Kc)
-        com base em artigos da Embrapa, considerando diferentes tipos de solo e
-        culturas agrícolas</strong
-      >.
+      <span class="secao-titulo">📍 {{ 'ABOUT.INTRO_TITLE' | translate }}</span><br />
+      {{ 'ABOUT.INTRO_P1' | translate }}
+      <br /><br />
+      {{ 'ABOUT.INTRO_P2' | translate }}
     </p>
 
     <p>
-      <span class="secao-titulo">📍 Objetivo do Projeto</span><br />
-      ✔ Auxiliar produtores no uso eficiente da água na irrigação.<br />
-      ✔ Reduzir desperdícios e otimizar o custo da irrigação.<br />
-      ✔ Promover práticas sustentáveis na agricultura.<br />
-      ✔ Oferecer uma ferramenta digital intuitiva e acessível para cálculos
-      hídricos.
+      <span class="secao-titulo">📍 {{ 'ABOUT.GOALS_TITLE' | translate }}</span><br />
+      ✔ {{ 'ABOUT.GOAL_1' | translate }}<br />
+      ✔ {{ 'ABOUT.GOAL_2' | translate }}<br />
+      ✔ {{ 'ABOUT.GOAL_3' | translate }}<br />
+      ✔ {{ 'ABOUT.GOAL_4' | translate }}
     </p>
 
     <p>
-      <span class="secao-titulo">📍 Funcionalidades da Aplicação</span><br />
-      ✅ Cálculo do volume de água necessário.<br />
-      ✅ Seleção de unidade de medida (m² ou hectares).<br />
-      ✅ Conversão automática entre litros e metros cúbicos.<br />
-      ✅ Estimativa do custo da irrigação.<br />
-      ✅ Interface intuitiva e responsiva.
+      <span class="secao-titulo">📍 {{ 'ABOUT.FEATURES_TITLE' | translate }}</span><br />
+      ✅ {{ 'ABOUT.FEAT_1' | translate }}<br />
+      ✅ {{ 'ABOUT.FEAT_2' | translate }}<br />
+      ✅ {{ 'ABOUT.FEAT_3' | translate }}<br />
+      ✅ {{ 'ABOUT.FEAT_4' | translate }}<br />
+      ✅ {{ 'ABOUT.FEAT_5' | translate }}
     </p>
 
     <p>
-      <span class="secao-titulo">📍 Benefícios para Empresas e Produtores</span
+      <span class="secao-titulo">📍 {{ 'ABOUT.BENEFITS_TITLE' | translate }}</span
       ><br />
-      💧 Eficiência no uso da água.<br />
-      💰 Redução de custos.<br />
-      🌱 Sustentabilidade na agricultura.<br />
-      📈 Tomada de decisão estratégica.
+      💧 {{ 'ABOUT.BEN_1' | translate }}<br />
+      💰 {{ 'ABOUT.BEN_2' | translate }}<br />
+      🌱 {{ 'ABOUT.BEN_3' | translate }}<br />
+      📈 {{ 'ABOUT.BEN_4' | translate }}
     </p>
 
     <p>
-      <span class="secao-titulo">📍 Tecnologias Utilizadas</span><br />
-      🔹 <strong>Frontend:</strong> Angular: Versão 19.2.0, Bootstrap, SCSS.<br />
-      🔹 <strong>Pesquisa:</strong> Baseado em dados e artigos científicos.<br />
-      🔹 <strong>Metodologia:</strong> PDCA para melhoria contínua.
+      <span class="secao-titulo">📍 {{ 'ABOUT.TECH_TITLE' | translate }}</span><br />
+      🔹 <strong>{{ 'ABOUT.TECH_FRONT' | translate }}</strong><br />
+      🔹 <strong>{{ 'ABOUT.TECH_RESEARCH' | translate }}</strong><br />
+      🔹 <strong>{{ 'ABOUT.TECH_METHOD' | translate }}</strong>
     </p>
 
     <div class="formulas-container">
-      <h3>📘 Cálculo da Necessidade Hídrica</h3>
+      <h3>📘 {{ 'ABOUT.FORMULA_TITLE' | translate }}</h3>
       <div class="formula-irrigacao">
-        <h2>📐 O cálculo é baseado na fórmula:💧</h2>
+        <h2>📐 {{ 'ABOUT.FORMULA_SUBTITLE' | translate }}💧</h2>
         <div class="formula-box">
           <div class="formula-step">
             <strong>ETc</strong> = <span class="var">ET₀</span> ×
@@ -91,57 +80,48 @@
           </div>
         </div>
       </div>
-      <p>Onde:</p>
+      <p>{{ 'ABOUT.WHERE' | translate }}</p>
       <ul class="variaveis-lista">
         <li>
-          <strong>ΕΤc</strong>: Evapotranspiração da cultura (em mm/dia ou m³/m²/dia).
+          <strong>ΕΤc</strong>: {{ 'ABOUT.ETC_DEF' | translate }}
         </li>
         <li>
-          <strong>ΕΤ₀</strong>: Evapotranspiração de referência, fornecida pelo
-          usuário.
+          <strong>ΕΤ₀</strong>: {{ 'ABOUT.ET0_DEF' | translate }}
         </li>
         <li>
-          <strong>Κc</strong>: Coeficiente da cultura — depende da cultura
-          agrícola, tipo de solo e estágio de desenvolvimento.
+          <strong>Κc</strong>: {{ 'ABOUT.KC_DEF' | translate }}
         </li>
         <li>
-          <strong>η</strong>: Eficiência do sistema de irrigação (valor padrão:
-          <strong>85%</strong>).
+          <strong>η</strong>: {{ 'ABOUT.EFF_DEF' | translate }}
         </li>
         <li>
-          <strong>Α</strong>: Tamanho da área a ser irrigada (em metros
-          quadrados).
+          <strong>Α</strong>: {{ 'ABOUT.AREA_DEF' | translate }}
         </li>
         <li>
-          <strong>V(L)</strong>: Volume de água necessário (em litros).
+          <strong>V(L)</strong>: {{ 'ABOUT.VL_DEF' | translate }}
         </li>
         <li>
-          <strong>V(m³)</strong>: Volume de água necessário (em metros cúbicos).
+          <strong>V(m³)</strong>: {{ 'ABOUT.VM3_DEF' | translate }}
         </li>
         <li>
-          <strong>Κ</strong>: Valor monetário da água, utilizando
-          <strong>R$ 2,50/m³</strong> como referência.
+          <strong>Κ</strong>: {{ 'ABOUT.K_DEF' | translate }}
         </li>
       </ul>
 
       <div class="observacao-box">
-        <strong>Observação:</strong>
+        <strong>{{ 'ABOUT.OBS_TITLE' | translate }}</strong>
         <p>
-          O valor de <strong>R$ 2,50/m³</strong> é apenas um exemplo. Para
-          aplicações reais, esse valor deve ser ajustado conforme a tarifa da
-          concessionária de água local. <br /><br />
-          Em casos de uso de fontes alternativas, como poços, rios, lagos ou
-          represas com bombeamento, é necessário realizar um cálculo adicional
-          com outras metodologias para estimar o custo energético e operacional.
+          {{ 'ABOUT.OBS_P1' | translate }} <br /><br />
+          {{ 'ABOUT.OBS_P2' | translate }}
         </p>
       </div>
     </div>
 
     <div class="referencias-irrigacao">
-      <h1>🌱 Referências Científicas sobre Irrigação, ETo, ETc e Kc</h1>
+      <h1>🌱 {{ 'ABOUT.REF_TITLE' | translate }}</h1>
 
       <div class="referencias-embrapa">
-        <h2>📘 Artigos Científicos da Embrapa</h2>
+        <h2>📘 {{ 'ABOUT.REF_EMBRAPA' | translate }}</h2>
         <ul>
           <li>
             <strong
@@ -151,7 +131,7 @@
             <a
               href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1136374/1/COT-254-Planilha-obtencao-coeficiente-de-cultura.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -162,7 +142,7 @@
             <a
               href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1173973/1/Conceicao-Wikirriga-fev-2025.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -170,7 +150,7 @@
             <a
               href="https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/875096/1/Manejoirrigacao.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -181,7 +161,7 @@
             <a
               href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1023835/1/bolpd325.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -192,7 +172,7 @@
             <a
               href="https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1154186/1/Evapotranspiracao-coeficiente-de-cultivo-e-eficiencia-no-uso-de-agua-de-uvas-2023.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -203,7 +183,7 @@
             <a
               href="https://ainfo.cnptia.embrapa.br/digital/bitstream/doc/1069565/1/Irrigacao-por-aspersao-em-hortalicas-ed-04-2017-web.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -214,7 +194,7 @@
             <a
               href="https://www.infoteca.cnptia.embrapa.br/handle/doc/568970"
               target="_blank"
-              >Acessar Documento</a
+              >{{ 'ABOUT.REF_ACCESS_DOC' | translate }}</a
             >
           </li>
           <li>
@@ -224,7 +204,7 @@
             <a
               href="https://www.infoteca.cnptia.embrapa.br/bitstream/doc/865592/1/Circ136.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -235,7 +215,7 @@
             <a
               href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1174002/1/2025-cppse-com-tec-118-jcpp-coeficiente-culturas-forrageiras-brasil-aplicacao-calculo-necessidade-irrigacao.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
           <li>
@@ -246,14 +226,14 @@
             <a
               href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1146565/1/6067.pdf"
               target="_blank"
-              >Visualizar PDF</a
+              >{{ 'ABOUT.REF_VIEW_PDF' | translate }}</a
             >
           </li>
         </ul>
       </div>
 
       <div class="artigos-irrigacao">
-        <h2>📗 Artigos Científicos da Nature</h2>
+        <h2>📗 {{ 'ABOUT.REF_NATURE' | translate }}</h2>
         <ul>
           <li>
             <a
@@ -340,10 +320,8 @@
     </div>
 
     <p>
-      <span class="secao-titulo">📍 Parcerias e Expansão</span><br />
-      O IrrigaCalc pode ser implementado por empresas agrícolas, cooperativas e
-      órgãos ambientais. Futuramente, poderá integrar sensores IoT e
-      inteligência artificial para automação da irrigação.
+      <span class="secao-titulo">📍 {{ 'ABOUT.EXPANSION_TITLE' | translate }}</span><br />
+      {{ 'ABOUT.EXPANSION_P1' | translate }}
     </p>
   </div>
 </div>

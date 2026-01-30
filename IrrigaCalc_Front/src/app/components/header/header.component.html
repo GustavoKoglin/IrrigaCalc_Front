@@ -1,40 +1,58 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="'/'" rel="noopener noreferrer">IrrigaCalc</a>
-    <button
-      class="navbar-toggler d-lg-none"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      (click)="isMenuOpen = !isMenuOpen"
-      [class.open]="isMenuOpen"
-    >
-      <span class="toggler-icon top-bar"></span>
-      <span class="toggler-icon middle-bar"></span>
-      <span class="toggler-icon bottom-bar"></span>
-    </button>
+    <a class="navbar-brand fw-bold d-flex align-items-center" [routerLink]="'/'" rel="noopener noreferrer">
+      <div class="logo-wrapper shadow-sm rounded">
+        <img src="IrrigaCalc.png" alt="Logo" width="45" height="45">
+      </div>
+      IrrigaCalc
+    </a>
+    
+    <div class="d-flex align-items-center">
+      <!-- Language Switcher Mobile -->
+      <div class="dropdown d-lg-none me-2">
+        <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          {{ getCurrentLang() | uppercase }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" (click)="changeLanguage('pt')">PT</a></li>
+          <li><a class="dropdown-item" (click)="changeLanguage('en')">EN</a></li>
+          <li><a class="dropdown-item" (click)="changeLanguage('es')">ES</a></li>
+        </ul>
+      </div>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        (click)="isMenuOpen = !isMenuOpen"
+        [class.open]="isMenuOpen"
+      >
+        <span class="toggler-icon top-bar"></span>
+        <span class="toggler-icon middle-bar"></span>
+        <span class="toggler-icon bottom-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" [class.show]="isMenuOpen" id="navbarNav">
+      <ul class="navbar-nav mx-auto align-items-center">
         <li class="nav-item">
-          <a class="nav-link" [href]="'#inicio'" rel="noopener noreferrer">Home</a>
+          <a class="nav-link" [href]="'#calcular-custo-irrigacao'" rel="noopener noreferrer">{{ 'MENU.CALC' | translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [href]="'#sobre'" rel="noopener noreferrer">Sobre</a>
+          <a class="nav-link" [href]="'#sobre'" rel="noopener noreferrer">{{ 'MENU.ABOUT' | translate }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [href]="'#contato'" rel="noopener noreferrer">Contato</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [href]="'#calcular-custo-irrigacao'" 
-          rel="noopener noreferrer"
-            >Calculadora</a
-          >
+          <a class="nav-link" [href]="'#contato'" rel="noopener noreferrer">{{ 'MENU.CONTACT' | translate }}</a>
         </li>
       </ul>
+
+      <!-- Language Switcher Desktop -->
+      <div class="d-none d-lg-block">
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-outline-light" [class.active]="getCurrentLang() === 'pt'" (click)="changeLanguage('pt')">PT</button>
+          <button type="button" class="btn btn-outline-light" [class.active]="getCurrentLang() === 'en'" (click)="changeLanguage('en')">EN</button>
+          <button type="button" class="btn btn-outline-light" [class.active]="getCurrentLang() === 'es'" (click)="changeLanguage('es')">ES</button>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

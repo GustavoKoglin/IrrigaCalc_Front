@@ -1,6 +1,6 @@
 <div class="container text-center mt-5">
-    <h1 class="text-danger">404 - Página não encontrada</h1>
-    <p>A página que você tentou acessar não existe, em caso de dúvidas por favor entre em contato.</p>
-    <a [href]="'/'" class="btn btn-primary">Voltar para a Home</a>
+    <h1 class="text-danger">{{ 'NOT_FOUND.TITLE' | translate }}</h1>
+    <p>{{ 'NOT_FOUND.MESSAGE' | translate }}</p>
+    <a [href]="'/'" class="btn btn-primary">{{ 'NOT_FOUND.BACK_HOME' | translate }}</a>
   </div>
   

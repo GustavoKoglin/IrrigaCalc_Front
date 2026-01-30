@@ -1,11 +1,21 @@
-footer {
-    background-color: #343a40;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 1.2rem;
-    position: relative;
-    width: 100%;
-    bottom: 0;
+.footer-section {
+  background: #f8faff;
+  border-top: 1px solid #eef2f7;
+  
+  h3 {
+    color: #007bff;
+    font-size: 1.5rem;
   }
+
+  .text-muted {
+    font-size: 0.9rem;
+  }
+
+  .btn-outline-primary {
+    transition: all 0.3s ease;
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
   

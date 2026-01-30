@@ -7,106 +7,130 @@
   <meta name="google-adsense-account" content="ca-pub-9656900277000115" />
 </head>
 
-<div class="container mt-5" id="calcular-custo-irrigacao">
-  <h1 class="text-primary text-center fw-bold">
-    Calculadora de Consumo Hídrico
-  </h1>
-  <p class="text-center">
-    Insira as informações para calcular o consumo hídrico de sua lavoura.
-  </p>
+<div class="calculator-container" id="calcular-custo-irrigacao">
+  <div class="header-section text-center mb-5">
+    <h1 class="display-4 fw-bold gradient-text">{{ 'CALC.TITLE' | translate }}</h1>
+    <p class="lead text-muted">{{ 'CALC.SUBTITLE' | translate }}</p>
+  </div>
 
-  <div class="card shadow p-4 mx-auto" style="max-width: 500px">
-    <form #form="ngForm">
-      <div class="mb-3">
-        <label for="area" class="form-label fw-bold">Área Cultivada</label>
-        <div class="input-group">
+  <div class="glass-card mx-auto">
+    <form #form="ngForm" class="row g-4">
+      <!-- Area Field -->
+      <div class="col-md-12">
+        <label for="area" class="form-label mb-2">{{ 'CALC.AREA_LABEL' | translate }}</label>
+        <div class="input-group custom-input-group">
+          <span class="input-group-text"><i class="bi bi-textarea-resize"></i>📏</span>
           <input
             type="text"
             class="form-control"
             id="area"
             [(ngModel)]="area"
             name="area"
-            placeholder="Digite a área"
+            [placeholder]="'CALC.AREA_PLACEHOLDER' | translate"
             (input)="formatarArea()"
           />
           <select
-            class="form-select"
+            class="form-select flex-grow-0"
+            style="width: 150px;"
             [(ngModel)]="unidadeArea"
             name="unidadeArea"
           >
-            <option value="selecione">Selecione</option>
-            <option value="m2">m²</option>
-            <option value="hectares">Hectares (ha)</option>
+            <option value="selecione">{{ 'CALC.SELECT' | translate }}</option>
+            <option value="m2">{{ 'CALC.UNIT_M2' | translate }}</option>
+            <option value="hectares">{{ 'CALC.UNIT_HA' | translate }}</option>
           </select>
         </div>
       </div>
 
-      <div class="mb-3">
-        <label for="tipoSolo" class="form-label fw-bold">Tipo de Solo</label>
-        <select id="tipoSolo" class="form-select" #tipoSolo>
-          <option value="selecionar">Selecionar</option>
-          <option value="arenoso">Arenoso</option>
-          <option value="argiloso">Argiloso</option>
-          <option value="siltoso">Siltoso</option>
-          <option value="humoso">Humoso</option>
-          <option value="calcário">Calcário</option>
-          <option value="salino">Salino</option>
-          <option value="outro">Outro</option>
-        </select>
+      <!-- Soil Type -->
+      <div class="col-md-6">
+        <label for="tipoSolo" class="form-label mb-2">{{ 'CALC.SOIL_TYPE' | translate }}</label>
+        <div class="input-group custom-input-group">
+          <span class="input-group-text">🌱</span>
+          <select id="tipoSolo" class="form-select" #tipoSolo>
+            <option value="selecionar">{{ 'CALC.SOIL_SELECT' | translate }}</option>
+            <option value="arenoso">{{ 'CALC.SOIL_SANDY' | translate }}</option>
+            <option value="argiloso">{{ 'CALC.SOIL_CLAY' | translate }}</option>
+            <option value="siltoso">{{ 'CALC.SOIL_SILTY' | translate }}</option>
+            <option value="humoso">{{ 'CALC.SOIL_HUMUS' | translate }}</option>
+            <option value="calcário">{{ 'CALC.SOIL_LIMESTONE' | translate }}</option>
+            <option value="salino">{{ 'CALC.SOIL_SALINE' | translate }}</option>
+            <option value="outro">{{ 'CALC.SOIL_OTHER' | translate }}</option>
+          </select>
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="categoria" class="form-label fw-bold">Categoria</label>
-        <select
-          id="categoria"
-          class="form-select"
-          [(ngModel)]="categoriaSelecionada"
-          name="categoria"
-          (change)="atualizarCulturas()"
+      <!-- Category -->
+      <div class="col-md-6">
+        <label for="categoria" class="form-label mb-2">{{ 'CALC.CATEGORY' | translate }}</label>
+        <div class="input-group custom-input-group">
+          <span class="input-group-text">📦</span>
+          <select
+            id="categoria"
+            class="form-select"
+            [(ngModel)]="categoriaSelecionada"
+            name="categoria"
+            (change)="atualizarCulturas()"
+          >
+            <option value="">{{ 'CALC.SELECT' | translate }}</option>
+            <option value="frutas">{{ 'CALC.CAT_FRUITS' | translate }}</option>
+            <option value="hortalicas">{{ 'CALC.CAT_VEGETABLES' | translate }}</option>
+            <option value="graos">{{ 'CALC.CAT_GRAINS' | translate }}</option>
+            <option value="legumes">{{ 'CALC.CAT_LEGUMES' | translate }}</option>
+            <option value="verduras">{{ 'CALC.CAT_GREENS' | translate }}</option>
+            <option value="outros">{{ 'CALC.CAT_OTHERS' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Crop Selection -->
+      <div class="col-md-12" *ngIf="culturasDisponiveis.length > 0">
+        <label for="cultura" class="form-label mb-2">{{ 'CALC.CROP' | translate }}</label>
+        <div class="input-group custom-input-group">
+          <span class="input-group-text">🌽</span>
+          <select id="cultura" class="form-select" [(ngModel)]="culturaSelecionada" name="cultura">
+            <option value="">{{ 'CALC.CROP_SELECT' | translate }}</option>
+            <option *ngFor="let item of culturasDisponiveis" [value]="item">
+              {{ 'CROPS.' + item | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Consumption Type -->
+      <div class="col-md-12">
+        <label for="tipoConsumo" class="form-label mb-2">{{ 'CALC.CONSUMPTION_TYPE' | translate }}</label>
+        <div class="input-group custom-input-group">
+          <span class="input-group-text">💧</span>
+          <select id="tipoConsumo" class="form-select" [(ngModel)]="tipoConsumoSinop" name="tipoConsumo">
+            <option value="residencial">{{ 'CALC.CONS_RESIDENTIAL' | translate }}</option>
+            <option value="comercial">{{ 'CALC.CONS_COMMERCIAL' | translate }}</option>
+            <option value="publica">{{ 'CALC.CONS_PUBLIC' | translate }}</option>
+            <option value="industrial">{{ 'CALC.CONS_INDUSTRIAL' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Calculate Button -->
+      <div class="col-md-12 mt-4">
+        <button
+          type="button"
+          class="btn btn-primary-custom w-100 py-3 shadow-lg"
+          (click)="calcularNecessidadeHidrica()"
         >
-          <option value="">Selecione</option>
-          <option value="frutas">Frutas</option>
-          <option value="hortalicas">Hortaliças</option>
-          <option value="graos">Grãos</option>
-          <option value="legumes">Legumes</option>
-          <option value="verduras">Verduras</option>
-          <option value="outros">Outros</option>
-        </select>
+          <span class="fw-bold">{{ 'CALC.CALCULATE' | translate }}</span>
+        </button>
       </div>
-
-      <div class="mb-3" *ngIf="culturasDisponiveis.length > 0">
-        <label for="cultura" class="form-label fw-bold">Cultura</label>
-        <select id="cultura" class="form-select" [(ngModel)]="culturaSelecionada" name="cultura">
-          <option value="">Selecionar</option>
-          <option *ngFor="let item of culturasDisponiveis" [value]="item">
-            {{ item }}
-          </option>
-        </select>        
-      </div>
-
-      <div class="mb-3">
-        <label for="tipoConsumo" class="form-label fw-bold">Tipo de Consumo (Águas de Sinop)</label>
-        <select id="tipoConsumo" class="form-select" [(ngModel)]="tipoConsumoSinop" name="tipoConsumo">
-          <option value="residencial">Residencial</option>
-          <option value="comercial">Comercial</option>
-          <option value="publica">Pública</option>
-          <option value="industrial">Industrial</option>
-        </select>
-      </div>
-
-      <button
-        type="button"
-        class="btn btn-primary w-100"
-        (click)="calcularNecessidadeHidrica()"
-      >
-        Calcular
-      </button>
     </form>
 
-    <!-- Exibição dos Resultados -->
-    <div class="result-container mt-4 p-3 text-center" *ngIf="resultLitros">
-      <h5 class="text-success">{{ resultLitros }}</h5>
-      <h5 class="text-danger">{{ resultCusto }}</h5>
+    <!-- Results Display -->
+    <div class="result-display mt-5 p-4 fade-in" *ngIf="resultLitros">
+      <div class="result-item water mb-3">
+        <h5 class="m-0 fw-bold">{{ resultLitros }}</h5>
+      </div>
+      <div class="result-item cost">
+        <h5 class="m-0 fw-bold">{{ resultCusto }}</h5>
+      </div>
     </div>
   </div>
 </div>

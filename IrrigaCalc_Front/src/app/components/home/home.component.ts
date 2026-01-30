@@ -5,15 +5,19 @@ import { CommonModule } from '@angular/common';
 import { AboutComponent } from "../about/about.component";
 import { ContactComponent } from "../contact/contact.component";
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
     CommonModule,
     RouterModule,
     IrrigationCalculatorComponent,
     AboutComponent,
-    ContactComponent
-],
+    ContactComponent,
+    TranslateModule
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
